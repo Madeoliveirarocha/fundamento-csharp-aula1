@@ -18,9 +18,9 @@ namespace dotnetcore
 
 
             var xMediaIdade = xPessoas.Average(p => p.Idade);
-            var xMaisVelho = xPessoas.OrderByDescending(p => p.Idade).FirstOrDefault().Idade;
+            var xMaisVelho = xPessoas.OrderByDescending(p => p.Idade).FirstOrDefault().Nome;
             var xMenorIdade = xPessoas.OrderByDescending(p => p.Idade).LastOrDefault().Idade;
-            var xMaisNovo = xPessoas.OrderByDescending(p => p.Idade).LastOrDefault().Idade;
+            var xMaisNovo = xPessoas.OrderByDescending(p => p.Idade).LastOrDefault().Nome;
             var xMaiorIdade = xPessoas.OrderByDescending(p => p.Idade).FirstOrDefault().Idade;
             var xAdultos = xPessoas.Where(p => p.Idade >= 18).Count();
 
