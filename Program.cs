@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace dotnetcore
 {
@@ -7,49 +8,34 @@ namespace dotnetcore
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Medias:");
+            var xPessoas = new List<Pessoas>();
 
-            var xNotasZuqui = new List<int> { 7, 6, 5, 3 };
-            var xNotasBronza = new List<int> { 8, 9, 10, 8 };
-
-            var xMediazuqi = CalcularMedia(xNotasZuqui);
-            Console.WriteLine("Media Zuqui: " + xMediazuqi);
-            
-            if (xMediazuqi<7) 
-            {
-                Console.WriteLine("Reprovado");
-            } 
-            else
-            {
-                if( xMediazuqi> 7 )
-                    Console.WriteLine("Aprovado");
-            }
+            xPessoas.Add (new Pessoas (12, "Lucas"  ));
+            xPessoas.Add (new Pessoas (17, "Matheus" ));
+            xPessoas.Add (new Pessoas (20, "Andre" ));
+            xPessoas.Add (new Pessoas (70, "Joao"));
             
 
-            var mediabronza = CalcularMedia(xNotasBronza);
-            Console.WriteLine("MediaBronza " + mediabronza );
-            if (mediabronza < 7) {
-                Console.WriteLine("Reprovado");
-            }
-            else
-            {
-                if(( mediabronza > 7 ))
-                Console.WriteLine("Aprovado"); 
-            }
 
-            
+            var xMediaIdade = xPessoas.Average(p => p.Idade);
+            var xMaisVelho = xPessoas.OrderByDescending(p => p.Idade).FirstOrDefault().Idade;
+            var xMenorIdade = xPessoas.OrderByDescending(p => p.Idade).LastOrDefault().Idade;
+            var xMaisNovo = xPessoas.OrderByDescending(p => p.Idade).LastOrDefault().Idade;
+            var xMaiorIdade = xPessoas.OrderByDescending(p => p.Idade).FirstOrDefault().Idade;
+            var xAdultos = xPessoas.Where(p => p.Idade >= 18).Count();
+
+
+
+            Console.WriteLine($"A média da idade das pessoas é: {xMediaIdade.ToString("F2")}");
+            Console.WriteLine($"A Pessoas Mais velha é: {xMaisVelho} e ela tem {xMaiorIdade} anos.");
+            Console.WriteLine($"A Pessoa Mais nova é: {xMaisNovo} Ela tem {xMenorIdade} anos.");
+            Console.WriteLine($"A quantidade de pessoas com mais de 18 anos é: {xAdultos}");
+                                  
+      
         }
 
-        static float CalcularMedia(List<int> notas)
-        {
-            var total = 0;
+       
 
-            foreach (var nota in notas)
-            {
-                total += nota; 
-                
-            }
-            return total / notas.Count;            
-        }
+
     }
 }
